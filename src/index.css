@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: custom tweaks to get the “Synaptik look” */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  background-color: #f7f3ef; /* warm off-white */
+  color: #111827; /* neutral-900 */
+}
+
+a {
+  transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+}
