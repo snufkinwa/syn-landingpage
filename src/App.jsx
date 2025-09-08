@@ -150,7 +150,7 @@ export default function SynaptikLanding() {
                 GitHub Repo
               </a>
               <a
-                href="https://youtu.be/N-GHFlzwTOg?si=f5x8VLOKt1fOY6Gp"
+                href="https://youtu.be/MQWFUgrDit8"
                 onClick={(e) => {
                   e.preventDefault();
                   setVideoOpen(true);
@@ -208,7 +208,7 @@ export default function SynaptikLanding() {
             <div className="relative" style={{ paddingTop: '56.25%' }}>
               <iframe
                 className="absolute left-0 top-0 h-full w-full rounded-lg z-0"
-                src="https://www.youtube.com/embed/N-GHFlzwTOg?autoplay=1&rel=0"
+                src="https://www.youtube.com/embed/MQWFUgrDit8?autoplay=1&rel=0"
                 title="Synaptik Core 3‑minute demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
