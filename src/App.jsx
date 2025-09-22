@@ -1,4 +1,52 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+function FloatingPaths({ position = 1 }) {
+  const paths = Array.from({ length: 36 }, (_, i) => ({
+    id: i,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+      380 - i * 5 * position
+    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+      152 - i * 5 * position
+    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+      684 - i * 5 * position
+    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+    width: 0.5 + i * 0.03,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      <svg
+        className="w-full h-full text-neutral-900"
+        viewBox="0 0 696 316"
+        fill="none"
+        aria-hidden="true"
+      >
+        <title>Background Paths</title>
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke="currentColor"
+            strokeWidth={path.width}
+            strokeOpacity={0.1 + path.id * 0.03}
+            initial={{ pathLength: 0.3, opacity: 0.6 }}
+            animate={{
+              pathLength: 1,
+              opacity: [0.3, 0.6, 0.3],
+              pathOffset: [0, 1, 0],
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: 'linear',
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+}
 
 export default function SynaptikLanding() {
   const [open, setOpen] = useState(false);
@@ -37,28 +85,29 @@ export default function SynaptikLanding() {
 
   return (
     <main className="relative bg-stone-50 text-neutral-900 min-h-screen flex flex-col overflow-hidden">
-      {/* Top-right decorative SVG */}
-      <img
-        src="/top-right.svg"
-        alt=""
-        aria-hidden="true"
-        className="hidden md:block pointer-events-none select-none absolute top-0 right-0 z-0 w-[85vw] max-w-[740px] h-auto"
-        loading="eager"
-      />
+      {/* Animated background paths (replaces static SVG) */}
+      <div className="absolute inset-0 z-0">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
       {/* CONTENT LAYOUT */}
-      <section className="relative z-10 mx-auto flex flex-1 w-full max-w-7xl flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-8 py-14 md:py-20">
-        {/* TAGLINE vertically centered, aligned left */}
-        <div className="flex-1 flex flex-col justify-center text-left">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight">
-            Memory. Ethics.<br />
-            Audit. <span className="text-indigo-600">Core.</span>
-          </h1>
-          {/* subtle divider for structure */}
-          <div className="mt-5 h-px w-48 bg-gradient-to-r from-neutral-400/40 to-transparent"></div>
-          <p className="mt-5 max-w-lg text-lg text-neutral-700">
-            Synaptik Core builds trust at the architectural level by weaving persistent memory,
-            contract-based safeguards, and transparent auditing directly into the AI workflow.
-          </p>
+      <section className="relative z-10 mx-auto flex flex-1 w-full max-w-7xl flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-2 py-14 md:py-20">
+        {/* TAGLINE vertically centered, aligned left with glass background */}
+        <div className="flex-1 flex flex-col justify-center">
+          <div
+            className="relative isolate text-left w-full max-w-3xl rounded-xl bg-white/20 dark:bg-white/10 backdrop-blur-2xl shadow-lg ring-1 ring-black/5 p-6 md:p-8 opacity-95"
+          >
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight tracking-tight">
+              Memory. Ethics.<br />
+              Audit. <span className="text-indigo-600">Core.</span>
+            </h1>
+            {/* subtle divider for structure */}
+            <div className="mt-5 h-px w-48 bg-gradient-to-r from-neutral-400/40 to-transparent"></div>
+            <p className="mt-5 max-w-prose text-lg text-neutral-900 ">
+              Synaptik Core builds trust at the architectural level by weaving persistent memory,
+              contract-based safeguards, and transparent auditing directly into the AI workflow.
+            </p>
+          </div>
         </div>
         </section>
 
