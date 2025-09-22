@@ -136,7 +136,7 @@ export default function SynaptikLanding() {
             {/* Desktop bottom-right panel */}
             <div className="hidden md:block fixed bottom-0 right-10 z-20 border-t border-l border-r border-neutral-900 bg-neutral-900 p-6 w-[360px] h-[280px] space-y-4 overflow-auto shadow-xl">
               <a
-                href="https://github.com/snufkinwa/synaptik-core"
+                href="https://github.com/snufkinwa/synaptik-coe"
                 className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-medium text-neutral-900 hover:opacity-90"
               >
                 <svg
