@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Research({ onBack }) {
+export default function Research() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     agentTypes: [],
     agentTypesOther: '',
@@ -18,6 +20,23 @@ export default function Research({ onBack }) {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(5);
+
+  // Auto-redirect timer after submission
+  useEffect(() => {
+    if (!submitted) return;
+    
+    if (countdown === 0) {
+      navigate('/');
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [submitted, countdown, navigate]);
 
   const handleCheckbox = (field, value) => {
     setFormData((prev) => ({
@@ -73,15 +92,23 @@ export default function Research({ onBack }) {
       <main className="relative bg-white text-neutral-900 min-h-screen flex flex-col">
         <div className="relative flex flex-col items-center justify-center flex-1 px-4">
           <div className="max-w-xl w-full rounded-xl bg-white border-2 border-indigo-600 shadow-2xl p-8 text-center">
+            <div className="mb-6">
+              <svg className="w-20 h-20 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
             <h2 className="text-3xl font-bold mb-4 text-indigo-600">Thank You!</h2>
             <p className="text-lg text-neutral-900 mb-6">
               Your feedback will help shape the future of Synaptik Core.
             </p>
+            <p className="text-sm text-neutral-600 mb-4">
+              Redirecting to home in <span className="font-bold text-indigo-600">{countdown}</span> second{countdown !== 1 ? 's' : ''}...
+            </p>
             <button
-              onClick={onBack}
+              onClick={() => navigate('/')}
               className="rounded-full bg-indigo-600 px-6 py-2 text-white font-semibold hover:bg-indigo-500 transition-colors"
             >
-              Back to Home
+              Back to Home Now
             </button>
           </div>
         </div>
@@ -93,7 +120,7 @@ export default function Research({ onBack }) {
     <main className="relative bg-white text-neutral-900 min-h-screen flex flex-col">
       <div className="relative mx-auto w-full max-w-4xl px-4 py-10 md:py-16">
         <button
-          onClick={onBack}
+          onClick={() => navigate('/')}
           className="mb-6 flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-semibold"
         >
           <svg

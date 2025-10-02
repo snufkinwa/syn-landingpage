@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Research from './Research.jsx';
 
@@ -49,10 +50,9 @@ function FloatingPaths({ position = 1 }) {
   );
 }
 
-export default function SynaptikLanding() {
+function HomePage() {
   const [open, setOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
     if (!videoOpen) return;
@@ -84,11 +84,6 @@ export default function SynaptikLanding() {
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [open]);
-
-  // If on Research page, render that instead
-  if (currentPage === 'research') {
-    return <Research onBack={() => setCurrentPage('home')} />;
-  }
 
   return (
     <main className="relative bg-stone-50 text-neutral-900 min-h-screen flex flex-col overflow-hidden">
@@ -156,15 +151,13 @@ export default function SynaptikLanding() {
               </div>
               <div className="flex-1 overflow-auto px-4 pb-8">
                 <div className="space-y-4">
-                  <button
-                    onClick={() => {
-                      setOpen(false);
-                      setCurrentPage('research');
-                    }}
+                  <a
+                    href="/research"
+                    onClick={() => setOpen(false)}
                     className="w-full text-left flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-500"
                   >
                     📋 Research Survey
-                  </button>
+                  </a>
                   <a
                     href="https://youtu.be/N-GHFlzwTOg?si=f5x8VLOKt1fOY6Gp"
                     onClick={(e) => {
@@ -191,15 +184,13 @@ export default function SynaptikLanding() {
 
             {/* Desktop bottom-right panel */}
             <div className="hidden md:block fixed bottom-0 right-10 z-20 border-t border-l border-r border-neutral-900 bg-neutral-900 p-6 w-[360px] h-[320px] space-y-4 overflow-auto shadow-xl">
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  setCurrentPage('research');
-                }}
-                className="w-full rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-500"
+              <a
+                href="/research"
+                onClick={() => setOpen(false)}
+                className="block text-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-500"
               >
                 📋 Research Survey
-              </button>
+              </a>
               <a
                 href="https://youtu.be/MQWFUgrDit8"
                 onClick={(e) => {
@@ -274,5 +265,14 @@ export default function SynaptikLanding() {
         © {new Date().getFullYear()} Synaptik Core
       </footer>
     </main>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/research" element={<Research />} />
+    </Routes>
   );
 }
