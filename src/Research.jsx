@@ -16,6 +16,7 @@ export default function Research() {
     trustEvidence: [],
     additionalNeeds: '',
     adoption: '',
+    wantsEarlyAccess: '',
     email: '',
   });
 
@@ -415,18 +416,41 @@ export default function Research() {
               </div>
             </div>
 
-            {/* Q11: Email Capture */}
+            {/* Q11: Early Access - Yes/No with conditional email */}
             <div>
               <label className="block text-lg font-semibold mb-3">
                 11. Would you like early access to the Phase I research program and case studies?
               </label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full rounded-lg border border-neutral-300 bg-white/50 backdrop-blur-sm p-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="your.email@example.com"
-              />
+              <div className="space-y-2 mb-4">
+                {['Yes', 'No'].map((option) => (
+                  <label key={option} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="wantsEarlyAccess"
+                      checked={formData.wantsEarlyAccess === option}
+                      onChange={() => setFormData({ ...formData, wantsEarlyAccess: option, email: option === 'No' ? '' : formData.email })}
+                      className="w-4 h-4"
+                    />
+                    <span className="text-neutral-900">{option}</span>
+                  </label>
+                ))}
+              </div>
+              
+              {formData.wantsEarlyAccess === 'Yes' && (
+                <div className="ml-6 mt-3">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
+                    Please provide your email address:
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full rounded-lg border border-neutral-300 bg-white/50 backdrop-blur-sm p-3 text-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+              )}
             </div>
 
             <button
