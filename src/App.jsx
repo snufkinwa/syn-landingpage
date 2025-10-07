@@ -106,8 +106,7 @@ function HomePage() {
             {/* subtle divider for structure */}
             <div className="mt-5 h-px w-48 bg-gradient-to-r from-neutral-400/40 to-transparent"></div>
             <p className="mt-5 max-w-prose text-lg text-neutral-900 ">
-              Synaptik Core builds trust at the architectural level by weaving persistent memory,
-              contract-based safeguards, and transparent auditing directly into the AI workflow.
+              A cognitive runtime that makes AI verifiable: persistent memory, enforceable contracts, and transparent logs by design.
             </p>
           </div>
         </div>
@@ -159,25 +158,11 @@ function HomePage() {
                     📋 Research Survey
                   </a>
                   <a
-                    href="https://youtu.be/N-GHFlzwTOg?si=f5x8VLOKt1fOY6Gp"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setOpen(false);
-                      setVideoOpen(true);
-                    }}
-                    className="block rounded-lg bg-indigo-500 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-400"
-                  >
-                    🎥 Watch 3‑min Demo
-                  </a>
-                  <a
                     href="mailto:janayharris@synaptik-core.dev"
                     className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
                   >
                     ✉️ Contact
                   </a>
-                  <span className="block text-xs text-neutral-400">
-                    Built with Rust + Python bindings. Hackathon submission, 2025.
-                  </span>
                 </div>
               </div>
             </div>
@@ -190,16 +175,6 @@ function HomePage() {
                 className="block text-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-500"
               >
                 📋 Research Survey
-              </a>
-              <a
-                href="https://youtu.be/MQWFUgrDit8"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setVideoOpen(true);
-                }}
-                className="block rounded-full bg-indigo-500 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-400"
-              >
-               🎥 Watch 3‑min Demo
               </a>
               <a
                 href="mailto:janayharris@synaptik-core.dev"
