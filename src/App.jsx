@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Research from './Research.jsx';
 
@@ -84,6 +84,18 @@ function HomePage() {
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [open]);
+
+  useEffect(() => {
+    document.title = 'Synaptik Core — Memory, Ethics, Audit for AI Systems';
+    const description = 'A cognitive runtime that makes AI verifiable: persistent memory, enforceable contracts, and transparent logs by design.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'description');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', description);
+  }, []);
 
   return (
     <main className="relative bg-stone-50 text-neutral-900 min-h-screen flex flex-col overflow-hidden">
@@ -244,10 +256,27 @@ function HomePage() {
 }
 
 export default function App() {
+  function CanonicalUpdater() {
+    const location = useLocation();
+    useEffect(() => {
+      const href = window.location.origin + location.pathname;
+      let link = document.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+    }, [location.pathname]);
+    return null;
+  }
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/research" element={<Research />} />
-    </Routes>
+    <>
+      <CanonicalUpdater />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/research" element={<Research />} />
+      </Routes>
+    </>
   );
 }

@@ -23,6 +23,18 @@ export default function Research() {
   const [submitted, setSubmitted] = useState(false);
   const [countdown, setCountdown] = useState(5);
 
+  useEffect(() => {
+    document.title = 'Research Survey — Synaptik Core';
+    const description = 'Share your AI agent needs and challenges in our research survey to help shape Synaptik Core.';
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'description');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', description);
+  }, []);
+
   // Auto-redirect timer after submission
   useEffect(() => {
     if (!submitted) return;
