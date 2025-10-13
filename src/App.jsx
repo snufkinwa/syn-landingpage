@@ -97,7 +97,7 @@ function HomePage() {
       <header className="hidden md:block relative z-20 w-full py-4">
         <nav className="flex items-center justify-center gap-6">
           <a
-            href="/docs"
+            href="https://synaptik-core.ai/docs"
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
           >
             Docs
@@ -201,7 +201,7 @@ function HomePage() {
           <div className="flex-1 overflow-auto px-4 pb-8">
             <div className="space-y-4">
               <a
-                href="/docs"
+                href="https://synaptik-core.ai/docs"
                 onClick={() => setOpen(false)}
                 className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
               >
