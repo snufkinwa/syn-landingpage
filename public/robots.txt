@@ -1,5 +1,20 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
+# Disallow admin or private paths (if any in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemaps
 Sitemap: https://synaptik-core.dev/sitemap.xml
 
+# Crawl delay to be respectful to servers (optional)
+Crawl-delay: 1
+
+# Specific bot rules (optional)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
   <url>
     <loc>https://synaptik-core.dev/</loc>
+    <lastmod>2025-10-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2025-10-12</lastmod>
+    <image:image>
+      <image:loc>https://synaptik-core.dev/synaptik-logo.png</image:loc>
+      <image:title>Synaptik Core Logo</image:title>
+      <image:caption>Verifiable AI Runtime Platform</image:caption>
+    </image:image>
   </url>
+  
+  <!-- Research Survey Page -->
   <url>
     <loc>https://synaptik-core.dev/research</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
     <lastmod>2025-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
-

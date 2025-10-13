@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Research from './Research.jsx';
 
@@ -85,18 +85,6 @@ function HomePage() {
     };
   }, [open]);
 
-  useEffect(() => {
-    document.title = 'Synaptik Core — Memory, Ethics, Audit for AI Systems';
-    const description = 'A cognitive runtime that makes AI verifiable: persistent memory, enforceable contracts, and transparent logs by design.';
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'description');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', description);
-  }, []);
-
   return (
     <main className="relative bg-stone-50 text-neutral-900 min-h-screen flex flex-col overflow-hidden">
       {/* Animated background paths (replaces static SVG) */}
@@ -104,6 +92,39 @@ function HomePage() {
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
       </div>
+      
+      {/* CENTERED HEADER NAVIGATION - Desktop only */}
+      <header className="hidden md:block relative z-20 w-full py-4">
+        <nav className="flex items-center justify-center gap-6">
+          <a
+            href="/docs"
+            className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
+          >
+            Docs
+          </a>
+          <a
+            href="https://synaptik-core.ai/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
+          >
+            Blog
+          </a>
+          <a
+            href="/research"
+            className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
+          >
+            Research Survey
+          </a>
+          <a
+            href="mailto:janayharris@synaptik-core.dev"
+            className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
+          >
+            Contact
+          </a>
+        </nav>
+      </header>
+
       {/* CONTENT LAYOUT */}
       <section className="relative z-10 mx-auto flex flex-1 w-full max-w-7xl flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-2 py-14 md:py-20">
         {/* TAGLINE vertically centered, aligned left with glass background */}
@@ -124,83 +145,95 @@ function HomePage() {
         </div>
         </section>
 
-      {/* BOTTOM RIGHT TOGGLE + LINKS */}
-      <section className="relative z-10 flex justify-end items-end">
-              {/* Floating toggle arrow - pinned to viewport corner */}
+      {/* MOBILE MENU TOGGLE - Top right corner for mobile only */}
       <button
         onClick={() => setOpen(!open)}
-        aria-label="Toggle quick links"
-        className="fixed bottom-3 right-3 md:bottom-4 md:right-10 z-40 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center text-neutral-900 hover:text-neutral-700"
+        aria-label="Toggle menu"
+        className="md:hidden fixed top-4 right-4 z-40 flex h-12 w-12 items-center justify-center text-neutral-900 hover:text-neutral-700 bg-white/80 backdrop-blur-sm rounded-lg"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className={`h-10 w-10 transform transition-transform ${open ? 'rotate-180' : 'motion-safe:animate-bounce hover:animate-none'}`}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
+        {open ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        )}
       </button>
-        {/* RIGHT BOX WITH LINKS, slides up/down and only visible if open */}
-        {open && (
-          <>
-            {/* Mobile full-screen menu */}
-            <div className="fixed inset-0 z-50 md:hidden bg-neutral-900 text-white flex flex-col" role="dialog" aria-modal="true">
-              <div className="flex items-center justify-between px-4 py-4">
-                <span className="text-xs uppercase tracking-widest text-neutral-400">Menu</span>
-                <button
-                  onClick={() => setOpen(false)}
-                  aria-label="Close menu"
-                  className="rounded-full bg-white/90 px-3 py-2 text-neutral-900 hover:bg-white"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex-1 overflow-auto px-4 pb-8">
-                <div className="space-y-4">
-                  <a
-                    href="/research"
-                    onClick={() => setOpen(false)}
-                    className="w-full text-left flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-500"
-                  >
-                    📋 Research Survey
-                  </a>
-                  <a
-                    href="mailto:janayharris@synaptik-core.dev"
-                    className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
-                  >
-                    ✉️ Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop bottom-right panel */}
-            <div className="hidden md:block fixed bottom-0 right-10 z-20 border-t border-l border-r border-neutral-900 bg-neutral-900 p-6 w-[360px] h-[320px] space-y-4 overflow-auto shadow-xl">
+      
+      {/* Mobile full-screen menu */}
+      {open && (
+        <div 
+          className="fixed inset-0 z-50 md:hidden bg-neutral-900 text-white flex flex-col" 
+          role="dialog" 
+          aria-modal="true"
+        >
+          <div className="flex items-center justify-between px-4 py-4">
+            <span className="text-xs uppercase tracking-widest text-neutral-400">Menu</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(false);
+              }}
+              aria-label="Close menu"
+              className="rounded-full bg-white/90 px-4 py-3 text-neutral-900 hover:bg-white"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto px-4 pb-8">
+            <div className="space-y-4">
+              <a
+                href="/docs"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
+              >
+                Docs
+              </a>
+              <a
+                href="https://blog.synaptik-core.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
+              >
+                Blog
+              </a>
               <a
                 href="/research"
                 onClick={() => setOpen(false)}
-                className="block text-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-500"
+                className="block rounded-lg bg-indigo-600 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-500"
               >
-                📋 Research Survey
+                Research Survey
               </a>
               <a
                 href="mailto:janayharris@synaptik-core.dev"
-                className="block rounded-full bg-white px-5 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
               >
-               ✉️ Contact
+                Contact
               </a>
-              <span className="block text-xs text-neutral-500">
-
-              </span>
             </div>
-          </>
-        )}
-      </section>
+          </div>
+        </div>
+      )}
 
 
 
@@ -248,35 +281,20 @@ function HomePage() {
         </div>
       )}
 
-      <footer className="relative z-10 mx-auto max-w-7xl px-6 pb-6 text-center text-xs text-neutral-500">
-        © {new Date().getFullYear()} Synaptik Core
+      <footer className="relative z-10 mx-auto max-w-7xl px-6 pb-6 text-center text-xs text-neutral-900">
+        <div className="inline-block bg-white/60 backdrop-blur-sm px-4 py-2 rounded-lg">
+          © {new Date().getFullYear()} Synaptik Core
+        </div>
       </footer>
     </main>
   );
 }
 
 export default function App() {
-  function CanonicalUpdater() {
-    const location = useLocation();
-    useEffect(() => {
-      const href = window.location.origin + location.pathname;
-      let link = document.querySelector('link[rel="canonical"]');
-      if (!link) {
-        link = document.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        document.head.appendChild(link);
-      }
-      link.setAttribute('href', href);
-    }, [location.pathname]);
-    return null;
-  }
   return (
-    <>
-      <CanonicalUpdater />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/research" element={<Research />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/research" element={<Research />} />
+    </Routes>
   );
 }
