@@ -98,6 +98,8 @@ function HomePage() {
         <nav className="flex items-center justify-center gap-6">
           <a
             href="https://synaptik-core.ai/docs"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
           >
             Docs
@@ -202,6 +204,8 @@ function HomePage() {
             <div className="space-y-4">
               <a
                 href="https://synaptik-core.ai/docs"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
               >
