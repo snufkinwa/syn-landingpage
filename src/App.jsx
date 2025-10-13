@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Research from './Research.jsx';
 
@@ -110,12 +110,12 @@ function HomePage() {
           >
             Blog
           </a>
-          <a
-            href="/research"
+          <Link
+            to="/research"
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
           >
             Research Survey
-          </a>
+          </Link>
           <a
             href="mailto:janayharris@synaptik-core.dev"
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
@@ -216,13 +216,13 @@ function HomePage() {
               >
                 Blog
               </a>
-              <a
-                href="/research"
+              <Link
+                to="/research"
                 onClick={() => setOpen(false)}
                 className="block rounded-lg bg-indigo-600 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-500"
               >
                 Research Survey
-              </a>
+              </Link>
               <a
                 href="mailto:janayharris@synaptik-core.dev"
                 onClick={() => setOpen(false)}
