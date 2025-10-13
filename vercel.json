@@ -1,13 +1,14 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "headers": [
         {
           "key": "X-Content-Type-Options",
@@ -32,7 +33,7 @@
       ]
     },
     {
-      "source": "/static/(.*)",
+      "source": "/static/:path*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -41,7 +42,7 @@
       ]
     },
     {
-      "source": "/(.*.(jpg|jpeg|png|gif|svg|webp|ico))",
+      "source": "/:path*.:ext(jpg|jpeg|png|gif|svg|webp|ico)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -52,7 +53,5 @@
   ],
   "trailingSlash": false,
   "cleanUrls": true,
-  "github": {
-    "silent": true
-  }
+  "github": {}
 }
