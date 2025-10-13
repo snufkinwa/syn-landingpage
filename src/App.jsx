@@ -208,7 +208,7 @@ function HomePage() {
                 Docs
               </a>
               <a
-                href="https://blog.synaptik-core.dev"
+                href="https://synaptik-core.ai/blog"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
