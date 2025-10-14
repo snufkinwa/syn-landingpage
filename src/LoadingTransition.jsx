@@ -61,26 +61,6 @@ export default function LoadingTransition({ isLoading, destination }) {
                 }}
               />
             </motion.div>
-            
-            {/* Progress bar */}
-            <div className="w-64 h-1.5 bg-neutral-200 rounded-full overflow-hidden mx-auto">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.5 }}
-                className="h-full bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-full"
-              />
-            </div>
-
-            {/* Destination text */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-sm font-medium text-neutral-600 tracking-wide"
-            >
-              {destination}
-            </motion.div>
           </div>
         </motion.div>
       )}
