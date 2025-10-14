@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Research() {
   const navigate = useNavigate();
@@ -130,7 +131,12 @@ export default function Research() {
   }
 
   return (
-    <main className="relative bg-white text-neutral-900 min-h-screen flex flex-col">
+    <motion.main 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="relative bg-white text-neutral-900 min-h-screen flex flex-col"
+    >
       <div className="relative mx-auto w-full max-w-4xl px-4 py-10 md:py-16">
         <button
           onClick={() => navigate('/')}
@@ -474,6 +480,6 @@ export default function Research() {
           </form>
         </div>
       </div>
-    </main>
+    </motion.main>
   );
 }
