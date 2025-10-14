@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Research from './Research.jsx';
+import LoadingTransition from './LoadingTransition.jsx';
 
 function FloatingPaths({ position = 1 }) {
   const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -53,6 +54,28 @@ function FloatingPaths({ position = 1 }) {
 function HomePage() {
   const [open, setOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingDestination, setLoadingDestination] = useState('');
+  const [highlightResearch, setHighlightResearch] = useState(false);
+  const location = useLocation();
+
+  // Check if user is returning from external site
+  useEffect(() => {
+    const referrer = document.referrer;
+    if (referrer.includes('synaptik-core.ai')) {
+      setHighlightResearch(true);
+      setTimeout(() => setHighlightResearch(false), 3000);
+    }
+  }, [location]);
+
+  // Handle external navigation with loading transition
+  const handleExternalNav = (url, destination) => {
+    setLoadingDestination(destination);
+    setLoading(true);
+    setTimeout(() => {
+      window.location.href = url;
+    }, 800);
+  };
 
   useEffect(() => {
     if (!videoOpen) return;
@@ -96,25 +119,25 @@ function HomePage() {
       {/* CENTERED HEADER NAVIGATION - Desktop only */}
       <header className="hidden md:block relative z-20 w-full py-4">
         <nav className="flex items-center justify-center gap-6">
-          <a
-            href="https://synaptik-core.ai/docs"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => handleExternalNav('https://synaptik-core.ai/docs', 'Docs')}
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
           >
             Docs
-          </a>
-          <a
-            href="https://synaptik-core.ai/blog"
-            target="_blank"
-            rel="noopener noreferrer"
+          </button>
+          <button
+            onClick={() => handleExternalNav('https://synaptik-core.ai/blog', 'Blog')}
             className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
           >
             Blog
-          </a>
+          </button>
           <Link
             to="/research"
-            className="px-6 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-100 transition rounded-lg"
+            className={`px-6 py-2 text-sm font-medium transition rounded-lg ${
+              highlightResearch 
+                ? 'bg-indigo-600 text-white animate-pulse' 
+                : 'text-neutral-900 hover:bg-neutral-100'
+            }`}
           >
             Research Survey
           </Link>
@@ -202,28 +225,26 @@ function HomePage() {
           </div>
           <div className="flex-1 overflow-auto px-4 pb-8">
             <div className="space-y-4">
-              <a
-                href="https://synaptik-core.ai/docs"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
+              <button
+                onClick={() => handleExternalNav('https://synaptik-core.ai/docs', 'Docs')}
+                className="w-full text-left block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
               >
                 Docs
-              </a>
-              <a
-                href="https://synaptik-core.ai/blog"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
+              </button>
+              <button
+                onClick={() => handleExternalNav('https://synaptik-core.ai/blog', 'Blog')}
+                className="w-full text-left block rounded-lg bg-white px-5 py-3 text-base font-semibold text-neutral-900 hover:bg-neutral-100"
               >
                 Blog
-              </a>
+              </button>
               <Link
                 to="/research"
                 onClick={() => setOpen(false)}
-                className="block rounded-lg bg-indigo-600 px-5 py-3 text-base font-semibold text-white hover:bg-indigo-500"
+                className={`block rounded-lg px-5 py-3 text-base font-semibold ${
+                  highlightResearch
+                    ? 'bg-indigo-600 text-white animate-pulse'
+                    : 'bg-indigo-600 text-white hover:bg-indigo-500'
+                }`}
               >
                 Research Survey
               </Link>
@@ -284,6 +305,9 @@ function HomePage() {
           </div>
         </div>
       )}
+
+      {/* Loading Transition */}
+      <LoadingTransition isLoading={loading} destination={loadingDestination} />
 
       <footer className="relative z-10 mx-auto max-w-7xl px-6 pb-6 text-center text-xs text-neutral-900">
         <div className="inline-block bg-white/60 backdrop-blur-sm px-4 py-2 rounded-lg">
