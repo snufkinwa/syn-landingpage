@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://synaptik-core.dev/</loc>
-    <lastmod>2025-10-12</lastmod>
+    <lastmod>2025-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -17,7 +17,7 @@
   <!-- Research Survey Page -->
   <url>
     <loc>https://synaptik-core.dev/research</loc>
-    <lastmod>2025-10-12</lastmod>
+    <lastmod>2025-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -166,6 +166,22 @@ function HomePage() {
             <p className="mt-5 max-w-prose text-lg text-neutral-900 ">
               A cognitive runtime that makes AI systems verifiable: persistent memory, enforceable contracts, and transparent logs by design.
             </p>
+            
+            {/* SEO-friendly hidden content */}
+            <div className="sr-only">
+              <h2>Verifiable AI Runtime Platform</h2>
+              <p>Synaptik Core is a production-ready cognitive runtime for AI agents featuring cryptographic memory guarantees, pre-action governance enforcement, and compliance-grade audit trails. Build trustworthy AI systems with our Python library, Rust crate, or Model Context Protocol (MCP) server.</p>
+              <h3>Key Features</h3>
+              <ul>
+                <li>Cryptographic Memory: Verifiable state management with cryptographic guarantees</li>
+                <li>Pre-Action Governance: Enforce rules and policies before AI agents take actions</li>
+                <li>Compliance-Grade Auditing: Complete audit trails for regulatory compliance</li>
+                <li>Multi-Language Support: Available as Python library and Rust crate</li>
+                <li>MCP Server: Model Context Protocol integration for any AI framework</li>
+              </ul>
+              <h3>Use Cases</h3>
+              <p>Enterprise AI systems, autonomous agents, LLM applications, AI governance, AI compliance, trustworthy AI development</p>
+            </div>
           </div>
         </div>
         </section>
