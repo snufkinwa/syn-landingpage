@@ -164,7 +164,7 @@ function HomePage() {
             {/* subtle divider for structure */}
             <div className="mt-5 h-px w-48 bg-gradient-to-r from-neutral-400/40 to-transparent"></div>
             <p className="mt-5 max-w-prose text-lg text-neutral-900 ">
-              A cognitive runtime that makes AI verifiable: persistent memory, enforceable contracts, and transparent logs by design.
+              A cognitive runtime that makes AI systems verifiable: persistent memory, enforceable contracts, and transparent logs by design.
             </p>
           </div>
         </div>
