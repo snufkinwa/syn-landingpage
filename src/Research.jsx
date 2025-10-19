@@ -25,7 +25,10 @@ export default function Research() {
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
+    // Set page title
     document.title = 'Research Survey — Synaptik Core';
+    
+    // Set meta description
     const description = 'Share your AI agent needs and challenges in our research survey to help shape Synaptik Core.';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
@@ -34,6 +37,36 @@ export default function Research() {
       document.head.appendChild(meta);
     }
     meta.setAttribute('content', description);
+
+    // Helper function to set or update meta tags
+    const setMetaTag = (property, content, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let tag = document.querySelector(`meta[${attribute}="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attribute, property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    // Open Graph tags for LinkedIn/Facebook
+    setMetaTag('og:title', 'Research Survey — Synaptik Core', true);
+    setMetaTag('og:description', description, true);
+    setMetaTag('og:url', 'https://synaptik-core.dev/research', true);
+    setMetaTag('og:image', 'https://synaptik-core.dev/synaptik-bannersocial.png', true);
+    setMetaTag('og:image:secure_url', 'https://synaptik-core.dev/synaptik-bannersocial.png', true);
+    setMetaTag('og:image:type', 'image/png', true);
+    setMetaTag('og:image:width', '1200', true);
+    setMetaTag('og:image:height', '630', true);
+    setMetaTag('og:image:alt', 'Synaptik Core Research Survey', true);
+
+    // Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Research Survey — Synaptik Core');
+    setMetaTag('twitter:description', description);
+    setMetaTag('twitter:image', 'https://synaptik-core.dev/synaptik-bannersocial.png');
+    setMetaTag('twitter:image:alt', 'Synaptik Core Research Survey');
   }, []);
 
   // Auto-redirect timer after submission
